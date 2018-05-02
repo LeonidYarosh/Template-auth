@@ -1,27 +1,25 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import NotFound from 'features/notFound/ui'
-
+import ProtectedRoute from './protectedRoute'
 import routes from './config'
 
-export const RouteWithSubRoutes = route => {
-  console.log(route)
-
-  return <Route
+export const RouteWithSubRoutes = route =>
+  <Route
     exact={route.exact}
     path={route.path}
     render={props =>
       <route.component {...props} routes={route.routes}/>
     }
   />
-}
 
 
 const Routing = () => <div>
   <Switch>
-    { routes.map((route, i) => <RouteWithSubRoutes key={ i } { ...route } />) }
-    <Route component={ NotFound }/>
+    { routes.map((route, i) => {
+      return route.isProtected ? <ProtectedRoute key={i} { ...route } />
+        : <RouteWithSubRoutes key={ i } { ...route } />
+    }) }
   </Switch>
 </div>
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Redirect, withRouter } from 'react-router'
+import { Redirect } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getFormValues } from 'redux-form'
@@ -21,7 +21,7 @@ class Auth extends Component {
     const { authentication, isAuthenticated, error } = this.props
 
     if (isAuthenticated) {
-      return <Redirect to="/content" />
+      return <Redirect to="/" />
     }
 
     return (
@@ -50,4 +50,4 @@ const mapDispatchToProps = dispatch =>
   )
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Auth))
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

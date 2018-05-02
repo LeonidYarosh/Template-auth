@@ -4,16 +4,16 @@ import SubContent from 'features/subcontent/ui'
 
 const routes = [
   {
-    path: '/',
-    exact: true,
+    path: '/auth',
     component: Auth,
   },
   {
-    path: '/content',
+    path: '/',
     component: Content,
+    isProtected: true,
     routes: [
       {
-        path: '/content/sub',
+        path: '/sub',
         component: SubContent,
       },
     ],

@@ -26,12 +26,12 @@ class Content extends React.Component {
     const { isAuthenticated, routes } = this.props
 
     if (!isAuthenticated) {
-      return <Redirect to="/" />
+      return <Redirect to="/auth" />
     }
 
     return (
       <div>
-        <Link to="/content/sub">Переход</Link>
+        <Link to="/sub">Переход</Link>
         <div>Контент</div>
         { routes.map((el, i) => <RouteWithSubRoutes key={i} {...el} /> ) }
         <button onClick={this.onClose}>Выход</button>
