@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getFormValues } from 'redux-form'
 
-import { authentication } from 'ducks/auth/actions'
-import { getIsAuthenticated } from 'ducks/auth/selectors'
+import { authentication } from '../ducks/actions'
+import { getIsAuthenticated } from '../ducks/selectors'
 import AuthPage from './authPage'
 
 class Auth extends Component {

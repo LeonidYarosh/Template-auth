@@ -1,5 +1,3 @@
-// application configuration provided from webpack collector
-import invariant from 'invariant'
 import { push } from 'react-router-redux'
 import { SessionToken } from './session'
 

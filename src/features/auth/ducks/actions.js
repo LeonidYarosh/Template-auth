@@ -1,6 +1,6 @@
-import { fetchAuthentication, fetchGetToken } from 'api/auth'
+import { fetchAuthentication, fetchGetToken } from 'features/auth/api'
 import { SessionToken } from 'utils/session'
-import { getFetchActions } from 'ducks/shared/fetch'
+import { getFetchActions } from 'features/ducks/fetch'
 import actionTypesAuth from './const'
 
 export const authentication = ({ login, password }) => async dispatch => {

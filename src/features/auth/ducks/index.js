@@ -1,4 +1,4 @@
-import fetchReducer from 'ducks/shared/fetch'
+import fetchReducer from 'features/ducks/fetch'
 import { combineReducers } from 'redux'
 import actionTypesAuth from './const'
 

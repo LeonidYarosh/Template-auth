@@ -2,10 +2,12 @@ import * as React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { removeToken } from 'ducks/auth/actions'
-import { getIsAuthenticated } from 'ducks/auth/selectors'
+import { removeToken } from 'features/auth/ducks/actions'
+import { getIsAuthenticated } from 'features/auth/ducks/selectors'
+import { RouteWithSubRoutes } from 'routing'
 
 class Content extends React.Component {
   static propTypes = {
@@ -13,6 +15,7 @@ class Content extends React.Component {
     removeToken: PropTypes.func,
     message: PropTypes.string,
     isAuthenticated: PropTypes.bool,
+    routes: PropTypes.array,
   }
 
   onClose = () => {
@@ -20,7 +23,7 @@ class Content extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props
+    const { isAuthenticated, routes } = this.props
 
     if (!isAuthenticated) {
       return <Redirect to="/" />
@@ -28,7 +31,9 @@ class Content extends React.Component {
 
     return (
       <div>
+        <Link to="/content/sub">Переход</Link>
         <div>Контент</div>
+        { routes.map((el, i) => <RouteWithSubRoutes key={i} {...el} /> ) }
         <button onClick={this.onClose}>Выход</button>
       </div>
     )

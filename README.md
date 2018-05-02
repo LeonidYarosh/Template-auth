@@ -1,5 +1,7 @@
 # Шаблон авторизации
 
+Создан для быстрого начала работы с приложением использующем авторизацию 
+
 # Начало работы
 
 ## node.js
@@ -16,8 +18,11 @@ https://nodejs.org/en/download/current/
 
 ## Запуск
 
-* `npm start` - сборка приложения для разработки. Открыть на  [http://localhost:8080](http://localhost:8080).
+* `npm start` - сборка приложения для разработки. Открыть на  [http://localhost:19090](http://localhost:8080).
 * `npm run build` - сборка приложения для production. Собранная версия доступна в папке `./dist`
+
+`P.S.` бэк проксируется на http://localhost:9992
+
 
 ## Используемые библиотеки
 
@@ -27,40 +32,34 @@ https://nodejs.org/en/download/current/
 * [react-router](https://github.com/ReactTraining/react-router) and 
 [react-router-redux](https://github.com/reactjs/react-router-redux) - declarative routing for React
 * [redux-actions](https://github.com/redux-utilities/redux-actions) - flux Standard Action utilities for Redux.
-* [redux-form](https://redux-form.com/7.3.0/) - The best way to manage your form state in Redux.
+* [eslint](https://eslint.org/) and [prettier](https://prettier.io/) - code style 
+
+(конфиг преттира для ватчера или хоткея "--write --single-quote --no-semi --trailing-comma=es5 bracketSpacing: true $FilePathRelativeToProjectRoot$")
 
 ## Структура
 
 ```
-src/
- ├─ api/ ─ запросы к бэку по фичам и минимальная обработка ответа
- │   └─ auth.js/ ─ запросы касательно фичи авторизации
- │
- ├─ assets/ ─ вспомогательные файлы для верстки
- │   ├─ styles/ ─ обище стили для всего проекта
- │   ├─ images/ ─ картинки
- │   └─ fonts/ ─ шрифты
- │
- ├─ ducks/ ─ хранилище и обработка данных redux
- │   ├─ auth/ ─ папка с названием фичи (тут авторизация)
- │   │   ├─ actions ─ экшены касательно данной фичи
- │   │   ├─ const ─ константы
- │   │   ├─ index.js ─ редьюсеры
- │   │   └─ selectors ─ селекторы
- │   ├─ shared/ ─ общие функции для создания экшенов и редьюсеров
- │   └─ index.js ─ компановка редьюсеров в один объект
- │
- ├─ ui/ ─ сами компоненты
- │   ├─ auth/ ─ папка с названием фичи (тут авторизация)
- │   │   ├─ authpage.js ─ компонент только с рендором по props. Редко когда со state (тупой компонент)
- │   │   ├─ index.js ─ компонет только с логикой (контейнер)
- │   │   └─ style.less ─ стили касательно только этой фичи
- │   └─ shared/ ─ общие компоненты для всего проекта
- │
- └─ utils/ ─ общие функциии для переиспользования
-
-## Использование компонентов
-
-Компоненты подключаются при помощи npm
-Для импорта ufs-ui необходимо скинуть все необходимые плагины в node_modules
+ src/
+  ├─ features/ ─ модули с фичами
+  │   ├─ auth/(возможна вложенность дочернего компонента по ситуации) ─ модуль авторизации
+  │   │   ├─ ducks ─ хранилище и обработка данных redux
+  │   │   │   ├─ actions ─ экшены касательно данной фичи
+  │   │   │   ├─ const ─ константы
+  │   │   │   ├─ index.js ─ редьюсеры
+  │   │   │   └─ selectors ─ селекторы
+  │   │   ├─ api/(api.js) ─ запросы к бэку по фичам и минимальная обработка ответа
+  │   │   ├─ ui/ ─ сам компонент рендеринг
+  │   │   │   ├─ img/ ─ картинки для компонента
+  │   │   │   ├─ styles/(styles.less) ─ стили для компонента
+  │   │   │   ├─ index.js ─ контейнер
+  │   │   │   └─ LoginPage.js ─ "глупый компонент"
+  │   │   └─ test/ ─ тесты по компоненту
+  │   ├─ ducks/ - сбор всех редьюсеров и общие функция для создания экшенов и редьюсеров
+  │   └─ common/ - папка с общими переиспользуемыми фичами
+  ├─ routing/ ─ все что связано с роутингом
+  ├─ utils/ ─ утилиты, общие функции, обертки
+  ├─ App.jsx ─ компонент оболочка для всех компонентов, с установкой роутов
+  ├─ store.js ─ инициализация store и middleware
+  └─ index.js ─ корневое подключение
+  
 ```

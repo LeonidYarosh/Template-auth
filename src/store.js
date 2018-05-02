@@ -4,7 +4,7 @@ import thunk from 'redux-thunk'
 import createHistory from 'history/createBrowserHistory'
 import { reducer as formReducer } from 'redux-form'
 
-import reducers from './ducks'
+import reducers from 'features/ducks'
 
 export const history = createHistory()
 

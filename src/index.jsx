@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import 'assets/styles/style.less'
+import 'features/common/styles/style.less'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import App from 'App'
