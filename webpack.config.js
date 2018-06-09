@@ -46,14 +46,6 @@ const lessStyles = cssStyles.concat([ {
   },
 } ])
 
-const sassStyles = cssStyles.concat([ {
-  loader: 'sass-loader',
-  options: {
-    sourceMap: true,
-    sourceComments: true,
-  },
-} ])
-
 const paths = {
   src: path.resolve(__dirname, 'src'),
   dist: path.resolve(__dirname, 'dist'),
@@ -73,7 +65,7 @@ const config = (env = 'development') => ({
   },
 
   resolve: {
-    extensions: [ '.ts', '.tsx', '.js', '.jsx' ],
+    extensions: [ '.js', '.jsx' ],
     modules: [
       path.join(__dirname, 'src'),
       'node_modules',
@@ -104,10 +96,6 @@ const config = (env = 'development') => ({
       loader: 'imports-loader?define=>false',
     },
     {
-      test: /\.(ts|tsx)$/,
-      loader: 'awesome-typescript-loader',
-    },
-    {
       test: /\.(js|jsx)?$/,
       exclude: /(node_modules)/,
       use: [
@@ -132,14 +120,6 @@ const config = (env = 'development') => ({
         [ 'style-loader' ].concat(lessStyles) :
         ExtractTextPlugin.extract({
           use: lessStyles,
-          publicPath: '../assets/',
-        }),
-    }, {
-      test: /\.(sass|scss)?$/,
-      use: isHot ?
-        [ 'style-loader' ].concat(sassStyles) :
-        ExtractTextPlugin.extract({
-          use: sassStyles,
           publicPath: '../assets/',
         }),
     }, {
